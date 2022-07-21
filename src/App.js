@@ -30,8 +30,8 @@ function App() {
     console.log(event.target.name.value);
   };
 
-  return (
-    <div className="App">
+  const form = (
+    <>
       <h1>Create account</h1>
       <form onSubmit={handleSubmit}>
         <div className="field">
@@ -69,14 +69,22 @@ function App() {
           setShowForm(true);
         }} type="submit" value="Register" />
       </form>
-      <div>
+    </>
+  );
 
-        {showForm && (
-          <p>
-            {name} {email} {password}
-          </p>
-        )}
-      </div>
+  const result = (
+    <>
+      <p>
+        {name} {email} {password}
+      </p>
+      <button onClick={() => setShowForm(false)}>Go back</button>
+      {/* <button onClick={setShowForm(false)}>Go back</button> Pourquoi ça me retourne une erreur et pas le premier élément ?? */}
+    </>
+  );
+
+  return (
+    <div className="App">
+      {showForm === true ? result : form}
     </div >
   );
 }
